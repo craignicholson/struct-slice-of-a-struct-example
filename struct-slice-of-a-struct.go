@@ -1,13 +1,9 @@
-// Copyright 2015 Craig Nicholson. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package main
 
 import (
 	"encoding/json"
 	"fmt"
-  "strconv"
+	"strconv"
 )
 
 // Customer with one or more address
@@ -30,12 +26,11 @@ type Location struct {
 
 func main() {
 
-  //Example 1 - Dynamic Slice
-  customer := SliceOfCustomers()
+	//Example 1 - Dynamic Slice
+	customer := SliceOfCustomers()
 	PrintJSON(customer)
 
 }
-
 
 // Example showing how we can add multiple locations
 // to one customer when you do not know the # of
@@ -43,7 +38,7 @@ func main() {
 func SliceOfCustomers() []Customer {
 
 	// Example of the known length of the slice
-	customers :=make([]Customer,5)
+	customers := make([]Customer, 5)
 	for i := 0; i < 5; i++ {
 		customers[i].FirstName = "Craig"
 		customers[i].LastName = "Nicholson"
@@ -58,7 +53,7 @@ func SliceOfCustomers() []Customer {
 			data.State = strconv.Itoa(i)
 			data.Country = strconv.Itoa(i)
 
-			locations = append(locations,data)
+			locations = append(locations, data)
 		}
 		customers[i].Address = locations
 	}
@@ -66,14 +61,14 @@ func SliceOfCustomers() []Customer {
 }
 
 // Print JSON
-func PrintJSON(customer []Customer){
-  json, err := json.Marshal(customer)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
+func PrintJSON(customer []Customer) {
+	json, err := json.Marshal(customer)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-  // Print the Results
-  fmt.Println(string(json))
-  fmt.Println("\n")
+	// Print the Results
+	fmt.Println(string(json))
+	fmt.Println("\n")
 }
